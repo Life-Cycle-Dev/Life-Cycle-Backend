@@ -24,7 +24,7 @@ jobs:
       - run: npm run test
 
   deploy:
-    need: testing
+    needs: testing
     name: Deploying to Google Cloud
     runs-on: ubuntu-latest
     
