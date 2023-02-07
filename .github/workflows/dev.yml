@@ -6,7 +6,25 @@ on:
   workflow_dispatch:
 
 jobs:
+  testing:
+    name: Run unit test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm ci
+      - run: npm run test
+
   deploy:
+    needs: testing
     name: Deploying to Google Cloud
     runs-on: ubuntu-latest
     
