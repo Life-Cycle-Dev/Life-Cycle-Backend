@@ -13,7 +13,7 @@
     "timestamps": true
   },
   "attributes": {
-    "name": {
+    "username": {
       "type": "string",
       "configurable": false,
       "required": true
@@ -83,6 +83,11 @@
     "weigth": {
       "type": "float",
       "min": 0
+    },
+    "provider": {
+      "type": "string",
+      "default": "local",
+      "private": true
     }
   }
 }
