@@ -1,0 +1,33 @@
+{
+  "name": "life-cycle-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Life Cycle Backend",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "deploy:dev": "gcloud app deploy app-dev.yaml --project life-cycle-377112",
+    "logs:dev": "gcloud app logs tail -s default --project life-cycle-377112",
+    "gcp-build": "strapi build"
+  },
+  "dependencies": {
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.5.6",
+    "@strapi/plugin-i18n": "4.6.0",
+    "@strapi/plugin-users-permissions": "4.6.0",
+    "@strapi/strapi": "4.6.0",
+    "mysql": "2.18.1"
+  },
+  "author": {
+    "name": "life cycle dev"
+  },
+  "strapi": {
+    "uuid": "ce1b5a43-6cd5-4ade-9425-d2924e615e33"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
