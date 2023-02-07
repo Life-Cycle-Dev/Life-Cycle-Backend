@@ -29,7 +29,7 @@
     - link ไปยัง jira
     - รายละเอียดโค้ดที่แก้อธิบายคร่าว ๆ (What i do)
     - หลังจากที่ pull request ถูก merge ไปเเล้วต้องทำยังไงในแต่ละ environment (Owner Checklist)
-- หากรายละเอียดของ pull request ดังกล่าวไม่ครบถ้วน ห้าม merge เด็ดขาด! หากฟ่าฝืนจะโดน rollback code ออก
+- หากรายละเอียดของ pull request ดังกล่าวไม่ครบถ้วน ห้าม merge เด็ดขาด! หากฝ่าฝืนจะโดน rollback code ออก
 - ต้องมีคน approved ครบตั้งแต่ 1 คนชึ้นไปและคนที่ approved ต้องติ้กในส่วนของ Approver Checklist ให้ครบทุกส่วน
 - สามารถ merge dev ได้ตลอดโดยไม่ต้องรอ approved ครบ
 
