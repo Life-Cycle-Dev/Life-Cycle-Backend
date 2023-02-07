@@ -10,7 +10,8 @@
     "strapi": "strapi",
     "deploy:dev": "gcloud app deploy app-dev.yaml --project life-cycle-377112",
     "logs:dev": "gcloud app logs tail -s default --project life-cycle-377112",
-    "gcp-build": "strapi build"
+    "gcp-build": "strapi build",
+    "test": "jest --forceExit --detectOpenHandles"
   },
   "dependencies": {
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.5.6",
@@ -29,5 +30,13 @@
     "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      ".tmp",
+      ".cache"
+    ],
+    "testEnvironment": "node"
+  },
+  "license": "life cycle dev"
 }
