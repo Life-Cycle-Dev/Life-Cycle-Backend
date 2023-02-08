@@ -35,3 +35,6 @@
 
 Happy Develop :)
 
+## 😶‍🌫️ Environment
+- dev - https://life-cycle-377112.as.r.appspot.com/admin
+- prod - 
