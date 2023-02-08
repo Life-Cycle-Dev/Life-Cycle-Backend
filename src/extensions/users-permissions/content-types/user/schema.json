@@ -84,11 +84,11 @@
         "F"
       ]
     },
-    "heigth": {
+    "height": {
       "type": "float",
       "min": 0
     },
-    "weigth": {
+    "weight": {
       "type": "float",
       "min": 0
     }
