@@ -15,9 +15,10 @@
   "attributes": {
     "username": {
       "type": "string",
-      "minLength": 3,
-      "unique": true,
-      "configurable": false
+      "unique": false,
+      "configurable": false,
+      "required": false,
+      "default": "cannot configure"
     },
     "email": {
       "type": "email",
