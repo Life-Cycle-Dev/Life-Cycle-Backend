@@ -11,7 +11,9 @@ afterAll(async () => {
   await cleanupStrapi();
 });
 
-it("strapi is defined", () => {
+it("test strapi is defined", () => {
   expect(strapi).toBeDefined();
   // expect(1 === 2).toBe(true);
 });
+
+require('./user');
