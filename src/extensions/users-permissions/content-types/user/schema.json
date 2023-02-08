@@ -15,8 +15,9 @@
   "attributes": {
     "username": {
       "type": "string",
-      "configurable": false,
-      "required": true
+      "minLength": 3,
+      "unique": true,
+      "configurable": false
     },
     "email": {
       "type": "email",
@@ -24,12 +25,15 @@
       "configurable": false,
       "required": true
     },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
     "password": {
       "type": "password",
       "minLength": 6,
       "configurable": false,
-      "private": true,
-      "required": true
+      "private": true
     },
     "resetPasswordToken": {
       "type": "string",
@@ -58,13 +62,16 @@
       "inversedBy": "users",
       "configurable": false
     },
+    "name": {
+      "type": "string",
+      "required": true
+    },
     "profileImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
     },
     "birthdate": {
       "type": "date"
@@ -83,11 +90,6 @@
     "weigth": {
       "type": "float",
       "min": 0
-    },
-    "provider": {
-      "type": "string",
-      "default": "local",
-      "private": true
     }
   }
 }
