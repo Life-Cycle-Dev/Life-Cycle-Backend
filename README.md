@@ -7,15 +7,17 @@
 **Environment ที่สำคัญ** 
 - node v.16.15.0 
 - npm v.8.5.5
-- mySQL Server
 
 **Devolopment**
-- ต้องเปิด mySQL Server ที่ Port 3306 หรือถ้าไม่สะดวกสามารถตั้งค่า `DATABASE_PORT` ได้ที่ไฟล์ `.env` 
-- หลังจากเปิด mySQL แล้วให้เปิด run script ด้านล่าง
-
 ```bash
   1: 📄 npm install
   2: 📄 npm run dev
+```
+
+**Unit testing**
+เปลี่ยน `NODE_ENV=test` ที่ `.env` ไฟล์
+```bash
+  1: 📄 npm test
 ```
 
 **คำเตือน 💣**
