@@ -10,6 +10,7 @@ module.exports = {
           email,
           password,
           role,
+          provider: 'local'
         });
 
         const jwt = strapi.plugins['users-permissions'].services.jwt.issue({

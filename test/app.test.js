@@ -17,3 +17,4 @@ it("test strapi is defined", () => {
 
 require('./user/register');
 require('./user/update');
+require('./user/login');

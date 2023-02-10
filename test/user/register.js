@@ -8,7 +8,7 @@ const mockUserData = {
 
 it("test register user and return jwt token", async () => {
   await request(strapi.server.httpServer) 
-    .post("/api/user/register")
+    .post("/api/users/register")
     .send(mockUserData)
     .expect("Content-Type", /json/)
     .expect(200)
@@ -20,14 +20,14 @@ it("test register user and return jwt token", async () => {
 
 it("test register with existing user", async () => {
   await request(strapi.server.httpServer) 
-    .post("/api/user/register")
+    .post("/api/users/register")
     .send(mockUserData)
     .expect(400)
 });
 
 it("test register with not complete infomation", async () => {
   await request(strapi.server.httpServer) 
-    .post("/api/user/register")
+    .post("/api/users/register")
     .send({
       email: "",
       password: "",

@@ -15,7 +15,7 @@ const mockUserData2 = {
 const actionUpdateUser = async (jwt, data) => {
     return new Promise(async (resolve, reject) => {
         await request(strapi.server.httpServer)
-        .put(`/api/user/update`)
+        .put(`/api/users/update`)
         .set('Authorization', 'Bearer ' + jwt)
         .send(data)
         .then((data) => {

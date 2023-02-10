@@ -2,7 +2,7 @@ module.exports = {
     routes: [
       {
         method: 'POST',
-        path: '/user/register',
+        path: '/users/register',
         handler: 'res-user.register',
         config: {
           auth: false
@@ -10,7 +10,7 @@ module.exports = {
       },
       {
         method: 'PUT',
-        path: '/user/update',
+        path: '/users/update',
         handler: 'res-user.update',
         config: {
           auth: false
