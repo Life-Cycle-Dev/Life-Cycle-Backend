@@ -25,8 +25,7 @@ module.exports = {
             birthdate: user.birthdate,
             gender: user.gender,
             height: user.height,
-            weight: user.weight,
-            profileImage: profileImage
+            weight: user.weight
           },
         };
       } catch (error) {
@@ -69,6 +68,7 @@ module.exports = {
           gender: user.gender,
           height: user.height,
           weight: user.weight,
+          profileImage: user.profileImage
         } 
       } catch (error) {
         ctx.status = 400;
