@@ -26,6 +26,7 @@ module.exports = {
             gender: user.gender,
             height: user.height,
             weight: user.weight,
+            profileImage: profileImage
           },
         };
       } catch (error) {
