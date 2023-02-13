@@ -70,11 +70,12 @@
       "required": true
     },
     "profileImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "birthdate": {
       "type": "date"
@@ -93,6 +94,41 @@
     "weight": {
       "type": "float",
       "min": 0
+    },
+    "eatCycleList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::eat-cycle.eat-cycle",
+      "mappedBy": "user"
+    },
+    "waterReminder": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "exercisCycleList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise-cycle.exercise-cycle",
+      "mappedBy": "user"
+    },
+    "exerciseTypeList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::exercise-type.exercise-type",
+      "mappedBy": "user"
+    },
+    "sleepCycleList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sleep-cycle.sleep-cycle",
+      "mappedBy": "user"
+    },
+    "waterCycleList": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::water-cycle.water-cycle",
+      "mappedBy": "user"
     }
   }
 }

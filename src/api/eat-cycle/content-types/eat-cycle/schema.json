@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eat_cycles",
+  "info": {
+    "singularName": "eat-cycle",
+    "pluralName": "eat-cycles",
+    "displayName": "Eat Cycle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "eatCycleList"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "name": {
+      "type": "text",
+      "required": true
+    },
+    "amount": {
+      "type": "float",
+      "min": 0
+    }
+  }
+}

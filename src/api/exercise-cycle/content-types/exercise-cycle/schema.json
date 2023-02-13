@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exercise_cycles",
+  "info": {
+    "singularName": "exercise-cycle",
+    "pluralName": "exercise-cycles",
+    "displayName": "Exercise Cycle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "exercisCycleList"
+    },
+    "startDatetime": {
+      "type": "datetime"
+    },
+    "endDatetime": {
+      "type": "datetime"
+    },
+    "exerciseType": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exercise-type.exercise-type"
+    }
+  }
+}
