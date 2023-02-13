@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "water_cycles",
+  "info": {
+    "singularName": "water-cycle",
+    "pluralName": "water-cycles",
+    "displayName": "Water Cycle",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "datetime",
+      "required": false
+    },
+    "amount": {
+      "type": "float",
+      "min": 0,
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "waterCycleList"
+    }
+  }
+}

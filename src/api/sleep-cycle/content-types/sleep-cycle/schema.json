@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sleep_cycles",
+  "info": {
+    "singularName": "sleep-cycle",
+    "pluralName": "sleep-cycles",
+    "displayName": "Sleep Cycle"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "datetime"
+    },
+    "bedTime": {
+      "type": "datetime"
+    },
+    "wakeupTime": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "sleepCycleList"
+    }
+  }
+}
