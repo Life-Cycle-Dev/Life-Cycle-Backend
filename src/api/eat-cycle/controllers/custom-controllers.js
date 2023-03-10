@@ -19,10 +19,10 @@ module.exports = {
             };
         } catch (error) {
             ctx.status = 500
-            ctx.body = error
+            ctx.body = error.message
         }
     },
-    insertFood: async (ctx) => {
+    insertFoodOfUser: async (ctx) => {
         try {
             const authHeader = ctx.request.header.authorization;
             if (!authHeader) {
@@ -62,7 +62,7 @@ module.exports = {
             const entry = await strapi.entityService.create('api::eat-cycle.eat-cycle', {
                 data: {
                     user: decoded.id,
-                    date: new Date(),
+                    date: new Date().setHours(0,0,0,0),
                     name: food.food.label,
                     amount: amount,
                     calorie: (food.food.nutrients.ENERC_KCAL / 100) * amount,
@@ -74,9 +74,85 @@ module.exports = {
             ctx.status = 200;
             ctx.body = entry;
         } catch (error) {
-            console.log(error);
             ctx.status = 500
-            ctx.body = error
+            ctx.body = error.message
+        }
+    },
+    getListFoodOfUser: async (ctx) => {
+        try {
+            const authHeader = ctx.request.header.authorization;
+            if (!authHeader) {
+                return ctx.badRequest('Unauthorized');
+            }
+
+            const token = authHeader && authHeader.split(' ')[1];
+            const decoded = await strapi.plugins['users-permissions'].services.jwt.verify(token);
+
+            if (!decoded) {
+                return ctx.badRequest('Invalid token');
+            }
+
+            let date = new Date().setHours(0,0,0,0);
+
+            if(ctx.request.query.date) {
+                date = new Date(ctx.request.query.date).setHours(0,0,0,0);
+            } 
+
+            const entries = await strapi.entityService.findMany('api::eat-cycle.eat-cycle', {
+                filters: {
+                    user: decoded.id,
+                    date: date
+                },
+                populate: ['img']
+            });
+
+            ctx.body = entries;
+            
+        } catch (error) {
+            ctx.status = 500
+            ctx.body = error.message
+        }
+    },
+    deleteFoodOfUser: async (ctx) => {
+        try {
+            const authHeader = ctx.request.header.authorization;
+            if (!authHeader) {
+                return ctx.badRequest('Unauthorized');
+            }
+
+            const token = authHeader && authHeader.split(' ')[1];
+            const decoded = await strapi.plugins['users-permissions'].services.jwt.verify(token);
+
+            if (!decoded) {
+                return ctx.badRequest('Invalid token');
+            }
+
+            const { id } = ctx.request.query;
+
+            if(!id) {
+                return ctx.badRequest('Invalid id');
+            }
+
+            const entry = await strapi.entityService.findOne('api::eat-cycle.eat-cycle', parseInt(id), {
+                populate: { user: true },
+            });
+
+            if(!entry) {
+                ctx.status = 404;
+                return ctx.body = 'Entry not found';
+            }
+                
+            if(decoded.id != entry.user.id) {
+                return ctx.badRequest('Permission denied');
+            }
+
+            await strapi.entityService.delete('api::eat-cycle.eat-cycle', parseInt(id));
+            
+            ctx.status = 200;
+            ctx.body = 'Delete success';
+        } catch (error) {
+            ctx.status = 500
+            ctx.body = error.message
         }
     }
 };

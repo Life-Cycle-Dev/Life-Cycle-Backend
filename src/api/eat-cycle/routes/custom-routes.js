@@ -11,9 +11,25 @@ module.exports = {
         }
       },
       {
+        method: 'GET',
+        path: '/lca/getListFoodOfUser',
+        handler: 'custom-controllers.getListFoodOfUser',
+        config: {
+            auth: false
+        }
+      },
+      {
         method: 'POST',
-        path: '/lca/insertFood',
-        handler: 'custom-controllers.insertFood',
+        path: '/lca/insertFoodOfUser',
+        handler: 'custom-controllers.insertFoodOfUser',
+        config: {
+            auth: false
+        }
+      },
+      {
+        method: 'DELETE',
+        path: '/lca/deleteFoodOfUser',
+        handler: 'custom-controllers.deleteFoodOfUser',
         config: {
             auth: false
         }
