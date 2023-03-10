@@ -41,7 +41,10 @@
       ".tmp",
       ".cache"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   },
   "license": "life cycle dev"
 }

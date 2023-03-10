@@ -1,4 +1,3 @@
-'use strict';
 const axios = require("axios");
 const uploader = require('./../../../../helper/uploader');
 
