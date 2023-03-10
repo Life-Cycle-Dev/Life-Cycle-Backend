@@ -22,12 +22,27 @@
       "type": "datetime"
     },
     "name": {
-      "type": "text",
+      "type": "string",
       "required": true
     },
     "amount": {
       "type": "float",
       "min": 0
+    },
+    "calorie": {
+      "type": "float",
+      "min": 0,
+      "default": 0
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
