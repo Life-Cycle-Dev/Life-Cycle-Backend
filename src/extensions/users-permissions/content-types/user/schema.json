@@ -129,6 +129,10 @@
       "relation": "oneToMany",
       "target": "api::water-cycle.water-cycle",
       "mappedBy": "user"
+    },
+    "auth": {
+      "type": "string",
+      "default": "local"
     }
   }
 }

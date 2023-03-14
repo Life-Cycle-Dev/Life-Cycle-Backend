@@ -16,6 +16,14 @@ module.exports = {
           auth: false
         }
       },
+      {
+        method: 'POST',
+        path: '/users/handleGoogleSignIn',
+        handler: 'res-user.handleGoogleSignIn',
+        config: {
+          auth: false
+        }
+      },
     ],
 };
    
