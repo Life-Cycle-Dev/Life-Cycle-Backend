@@ -15,6 +15,9 @@ env_variables:
   ADMIN_JWT_SECRET: 'WfFyiMCOoEi7+5w2rW1KPw'
   JWT_SECRET: 'sR+2EadCG0J5WQxUb7HG9A'
   GOOGLE_CLOUD_STORAGE_BUCKET_NAME: 'life-cycle-dev-bucket'
+  FOOD_ENDPOINT_API: 'https://api.edamam.com'
+  FOOD_API_APP_ID: '07d50733'
+  FOOD_API_APP_KEY: '80fcb49b500737827a9a23f7049653b9'
 
 beta_settings:
   cloud_sql_instances: 'life-cycle-377112:asia-southeast1:life-cycle-dev'

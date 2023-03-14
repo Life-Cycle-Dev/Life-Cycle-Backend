@@ -5,15 +5,15 @@
 
 ## Owner Checklist
 - Befor merge (dev)
-   - [ ] not the thing to do
+   - [ ] not thing to do
 - After merge (dev)
-   - [ ] not the thing to do
+   - [ ] not thing to do
 - Befor merge (prod)
-   - [ ] not the thing to do
+   - [ ] not thing to do
 - After merge (prod)
-   - [ ] not the thing to do 
+   - [ ] not thing to do 
 - Other
-   - [ ] not the thing to do
+   - [ ] not thing to do
 
 ## Approver Checklist
 - [ ] เข้าใจสิ่งที่คนเปิด requester ทำ
