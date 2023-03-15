@@ -14,10 +14,15 @@ module.exports = {
     strapi.db.lifecycles.subscribe({
       models: ['plugin::users-permissions.user'],
       async beforeCreate(event) {
-        event.params.data.username = event.params.data.email;
+        console.log(event.params.data);
+        if(event.params.data.auth === 'local') {
+          event.params.data.username = event.params.data.email;
+        }
       },
       async beforeUpdate(event) {
-        event.params.data.username = event.params.data.email;
+        if(event.params.data.auth === 'local') {
+          event.params.data.username = event.params.data.email;
+        }
       }
     });
 
