@@ -106,28 +106,10 @@
       "default": 0,
       "min": 0
     },
-    "exercisCycleList": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::exercise-cycle.exercise-cycle",
-      "mappedBy": "user"
-    },
-    "exerciseTypeList": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::exercise-type.exercise-type",
-      "mappedBy": "user"
-    },
     "sleepCycleList": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::sleep-cycle.sleep-cycle",
-      "mappedBy": "user"
-    },
-    "waterCycleList": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::water-cycle.water-cycle",
       "mappedBy": "user"
     },
     "auth": {
