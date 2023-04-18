@@ -12,8 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Date": {
-      "type": "date"
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "bedTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "wakeUpTime": {
+      "type": "datetime"
     },
     "user": {
       "type": "relation",
@@ -21,11 +29,11 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "sleepCycleList"
     },
-    "sleepCycleLines": {
+    "sleepCycleListIds": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::sleep-cycle-line.sleep-cycle-line",
-      "mappedBy": "sleepCycle"
+      "target": "api::sleep-cycle-list.sleep-cycle-list",
+      "mappedBy": "sleepCycleId"
     }
   }
 }

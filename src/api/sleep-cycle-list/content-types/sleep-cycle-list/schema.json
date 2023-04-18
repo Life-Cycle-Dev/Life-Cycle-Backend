@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sleep_cycle_lists",
+  "info": {
+    "singularName": "sleep-cycle-list",
+    "pluralName": "sleep-cycle-lists",
+    "displayName": "Sleep Cycle List",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sleepCycleId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sleep-cycle.sleep-cycle",
+      "inversedBy": "sleepCycleListIds"
+    },
+    "start": {
+      "type": "datetime"
+    },
+    "end": {
+      "type": "datetime"
+    }
+  }
+}
