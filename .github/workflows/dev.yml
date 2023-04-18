@@ -20,7 +20,7 @@ jobs:
         env:
           HOST: localhost
           PORT: 1337
-          APP_KEYS: Ock6vJB1fklvV2j6+ojTQw,S4Y5iNoCrQ5VHezKeBTIdw
+          APP_KEYS: Ock6vJB1fklvV2j6+ojTQw,LGk6Ee2hFR8izAXtgJ8N+g,5kp21juVV2qnRsiBbNiCQg,l6fX7K8ZlZuuesvFEVlHuw
           API_TOKEN_SALT: S4Y5iNoCrQ5VHezKeBTIdw
           JWT_SECRET: sR+2EadCG0J5WQxUb7HG9A
           FOOD_ENDPOINT_API: https://api.edamam.com
