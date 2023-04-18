@@ -4,14 +4,10 @@
 [link to jira]()
 
 ## Owner Checklist
-- Befor merge (dev)
+- Befor merge
    - [ ] not thing to do
-- After merge (dev)
+- After merge
    - [ ] not thing to do
-- Befor merge (prod)
-   - [ ] not thing to do
-- After merge (prod)
-   - [ ] not thing to do 
 - Other
    - [ ] not thing to do
 
