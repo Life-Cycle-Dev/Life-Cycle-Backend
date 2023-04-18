@@ -19,6 +19,7 @@ jobs:
       FOOD_ENDPOINT_API: https://api.edamam.com
       FOOD_API_APP_ID: 07d50733
       FOOD_API_APP_KEY: 80fcb49b500737827a9a23f7049653b9
+      TRANSFER_TOKEN_SALT: 8f5258f11b2dab91ef9829af9ee0faf898d5d0b4f4b754cf09532e4b1384c84a
       NODE_ENV: test
       ENV: test
     strategy:
