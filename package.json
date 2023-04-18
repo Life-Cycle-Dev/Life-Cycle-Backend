@@ -14,7 +14,6 @@
     "test": "jest --forceExit --detectOpenHandles"
   },
   "dependencies": {
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.5.6",
     "@strapi/plugin-i18n": "4.8.1",
     "@strapi/plugin-users-permissions": "4.8.1",
     "@strapi/strapi": "4.8.1",
