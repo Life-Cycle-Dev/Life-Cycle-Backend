@@ -21,7 +21,6 @@
     "jest": "^26.6.3",
     "mysql": "2.18.1",
     "sqlite3": "^5.1.4",
-    "strapi-plugin-entity-relationship-chart": "^4.1.0",
     "supertest": "^6.3.3"
   },
   "author": {
