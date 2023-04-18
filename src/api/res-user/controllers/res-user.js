@@ -156,7 +156,6 @@ module.exports = {
           message : "Unauthorized"
         };
       } catch (error) {
-        console.log(error);
         ctx.status = 400;
         return ctx.body = {
           message : error.message
