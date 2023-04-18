@@ -17,6 +17,17 @@ jobs:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
+        env:
+          HOST: localhost
+          PORT: 1337
+          APP_KEYS: Ock6vJB1fklvV2j6+ojTQw
+          API_TOKEN_SALT: S4Y5iNoCrQ5VHezKeBTIdw
+          JWT_SECRET: sR+2EadCG0J5WQxUb7HG9A
+          FOOD_ENDPOINT_API: https://api.edamam.com
+          FOOD_API_APP_ID: 07d50733
+          FOOD_API_APP_KEY: 80fcb49b500737827a9a23f7049653b9
+          NODE_ENV: test
+          ENV: test
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
