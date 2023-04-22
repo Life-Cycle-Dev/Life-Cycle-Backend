@@ -65,7 +65,7 @@ $RECYCLE.BIN/
 # Logs and databases
 ############################
 
-.tmp
+.tmp/database.db
 *.log
 *.sql
 *.sqlite
@@ -101,6 +101,7 @@ node_modules
 
 testApp
 coverage
+.tmp/test.db
 
 ############################
 # Strapi
@@ -117,3 +118,4 @@ build
 package-lock.json
 yarn.lock
 /public/uploads/*
+app.yaml

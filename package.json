@@ -8,18 +8,20 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "deploy:dev": "gcloud app deploy app-dev.yaml --project life-cycle-377112",
-    "logs:dev": "gcloud app logs tail -s default --project life-cycle-377112",
+    "deploy": "gcloud app deploy app.yaml --project lifecycle-dev-384515",
+    "logs": "gcloud app logs tail -s default --project lifecycle-dev-384515",
     "gcp-build": "strapi build",
     "test": "jest --forceExit --detectOpenHandles"
   },
   "dependencies": {
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "^4.6.1",
     "@strapi/plugin-i18n": "4.8.1",
     "@strapi/plugin-users-permissions": "4.8.1",
     "@strapi/strapi": "4.8.1",
     "axios": "^1.3.4",
     "jest": "^26.6.3",
     "mysql": "2.18.1",
+    "pg": "^8.10.0",
     "sqlite3": "^5.1.4",
     "supertest": "^6.3.3"
   },
@@ -30,7 +32,7 @@
     "uuid": "ce1b5a43-6cd5-4ade-9425-d2924e615e33"
   },
   "engines": {
-    "node": ">=14.19.1 <=18.x.x",
+    "node": ">=16.15.0",
     "npm": ">=6.0.0"
   },
   "jest": {

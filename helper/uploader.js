@@ -27,8 +27,7 @@ module.exports = {
   },
 
   async uploadToLibrary(imageByteStreamURL) {
-    const isProduction = process.env.ENV === 'develop';
-    const filePath = `${!isProduction ? '.' : ''}/tmp/${_.random(1000000000000, 9999999999999)}.jpg`;
+    const filePath = `/.tmp/${_.random(1000000000000, 9999999999999)}.jpg`;
     const { data } = await axios.get(imageByteStreamURL, {
       responseType: 'stream',
     });
