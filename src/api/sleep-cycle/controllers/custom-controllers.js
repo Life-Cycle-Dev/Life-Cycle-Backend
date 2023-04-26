@@ -26,7 +26,10 @@ module.exports = {
 
             if(existingSleepCycle.length > 0) {
                 ctx.status = 400
-                ctx.body = `Sleep cycle already exists with date=${existingSleepCycle[0].date} and userId=${user.id}`
+                ctx.body = {
+                    message: `Sleep cycle already exists with date=${existingSleepCycle[0].date} and userId=${user.id}`,
+                    sleepCycleId: existingSleepCycle[0].id
+                }
                 return
             }
 
@@ -62,7 +65,7 @@ module.exports = {
     updateTimeSleep: async (ctx) => {
         try {
             const user = await validateHeaderUser(ctx);
-            const requireFields = ['id', 'wakeUpTime'];
+            const requireFields = ['id'];
 
             if(!user || !validateRequireFields(ctx, requireFields)) {
                 return
@@ -90,7 +93,7 @@ module.exports = {
                 wakeUpTime: parseDateTime(wakeUpTime)
             }
 
-            if(bedTime){
+            if(bedTime && wakeUpTime){
                 const validate = new Date(bedTime).valueOf() < new Date(wakeUpTime).valueOf();
                 if(!validate) {
                     ctx.status = 400
@@ -98,13 +101,20 @@ module.exports = {
                     return
                 }
                 prepareData.bedTime = parseDateTime(bedTime);
-            } else {
+            } else if(wakeUpTime) {
                 const validate = new Date(existingSleepCycle.bedTime).valueOf() < new Date(wakeUpTime).valueOf();
                 if(!validate) {
                     ctx.status = 400
                     ctx.body = `Bed time must be less than wake up time`
                     return
                 }
+            } else if(bedTime) {
+                prepareData.bedTime = parseDateTime(bedTime);
+                prepareData.wakeUpTime = null;
+            } else {
+                ctx.status = 400
+                ctx.body = `Bed time or wake up time must be provided`
+                return
             }
 
             await strapi.entityService.update('api::sleep-cycle.sleep-cycle', id, {
@@ -127,7 +137,7 @@ module.exports = {
             ctx.status = 200
             ctx.body = {
                 ...afterSleepCycle[0],
-                totalSleepTime: totalSleepTime,
+                totalSleepTime: totalSleepTime < 0 ? 0 : totalSleepTime,
                 totalSnoringTime: totalSnoringTime,
             }
         } catch (error) {
