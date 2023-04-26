@@ -65,7 +65,7 @@ $RECYCLE.BIN/
 # Logs and databases
 ############################
 
-.tmp/database.db
+tmp/database.db
 *.log
 *.sql
 *.sqlite
@@ -101,7 +101,7 @@ node_modules
 
 testApp
 coverage
-.tmp/test.db
+tmp/test.db
 
 ############################
 # Strapi

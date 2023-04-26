@@ -4,7 +4,8 @@
   "info": {
     "singularName": "system-param",
     "pluralName": "system-params",
-    "displayName": "System param"
+    "displayName": "System Param",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

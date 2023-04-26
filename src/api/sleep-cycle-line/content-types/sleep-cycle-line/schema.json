@@ -4,21 +4,22 @@
   "info": {
     "singularName": "sleep-cycle-line",
     "pluralName": "sleep-cycle-lines",
-    "displayName": "Sleep Cycle Line"
+    "displayName": "Sleep Cycle Line",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "startDate": {
+      "type": "datetime"
+    },
     "sleepCycle": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::sleep-cycle.sleep-cycle",
+      "target": "api::eat-cycle.eat-cycle",
       "inversedBy": "sleepCycleLines"
-    },
-    "startDate": {
-      "type": "datetime"
     }
   }
 }
