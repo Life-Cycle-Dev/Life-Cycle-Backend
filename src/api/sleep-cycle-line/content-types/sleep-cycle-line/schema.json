@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sleep_cycle_lines",
+  "info": {
+    "singularName": "sleep-cycle-line",
+    "pluralName": "sleep-cycle-lines",
+    "displayName": "Sleep Cycle Line",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "startTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "endTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "sleepCycle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::sleep-cycle.sleep-cycle",
+      "inversedBy": "sleepCycleLines"
+    }
+  }
+}

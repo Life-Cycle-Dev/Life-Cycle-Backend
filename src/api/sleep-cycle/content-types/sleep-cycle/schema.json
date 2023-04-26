@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sleep-cycle",
     "pluralName": "sleep-cycles",
-    "displayName": "Sleep Cycle"
+    "displayName": "Sleep Cycle",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,12 +13,14 @@
   "pluginOptions": {},
   "attributes": {
     "date": {
-      "type": "datetime"
+      "type": "date",
+      "required": true
     },
     "bedTime": {
-      "type": "datetime"
+      "type": "datetime",
+      "required": true
     },
-    "wakeupTime": {
+    "wakeUpTime": {
       "type": "datetime"
     },
     "user": {
@@ -25,6 +28,12 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "sleepCycleList"
+    },
+    "sleepCycleLines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sleep-cycle-line.sleep-cycle-line",
+      "mappedBy": "sleepCycle"
     }
   }
 }
