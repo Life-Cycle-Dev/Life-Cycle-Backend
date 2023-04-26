@@ -12,13 +12,18 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "startDate": {
-      "type": "datetime"
+    "startTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "endTime": {
+      "type": "datetime",
+      "required": true
     },
     "sleepCycle": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::eat-cycle.eat-cycle",
+      "target": "api::sleep-cycle.sleep-cycle",
       "inversedBy": "sleepCycleLines"
     }
   }

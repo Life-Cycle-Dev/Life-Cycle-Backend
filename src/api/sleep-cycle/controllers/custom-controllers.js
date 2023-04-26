@@ -25,7 +25,7 @@ module.exports = {
 
             if(existingSleepCycle.length > 0) {
                 ctx.status = 400
-                ctx.body = `Sleep cycle already exists with date=${existingSleepCycle[0].date} and user=${existingSleepCycle[0].user.name}`
+                ctx.body = `Sleep cycle already exists with date=${existingSleepCycle[0].date} and userId=${user.id}`
                 return
             }
 
@@ -37,7 +37,13 @@ module.exports = {
             }
 
             if(wakeUpTime) {
-                prepareData.wakeUpTime = parseDateTime(wakeUpTime);
+                const validate = new Date(bedTime).valueOf() < new Date(wakeUpTime).valueOf();
+                if(!validate) {
+                    ctx.status = 400
+                    ctx.body = `Bed time must be less than wake up time`
+                    return
+                }
+                prepareData.bedTime = parseDateTime(bedTime);
             }
 
             const entry = await strapi.entityService.create('api::sleep-cycle.sleep-cycle', {
@@ -75,7 +81,7 @@ module.exports = {
 
             if(existingSleepCycle.user.id !== user.id) {
                 ctx.status = 400
-                ctx.body = `Sleep cycle not found with id=${id} and user=${user.name}`
+                ctx.body = `Sleep cycle not found with sleepCycleId=${id} and userId=${user.id}`
                 return
             }
 
@@ -91,19 +97,42 @@ module.exports = {
                     return
                 }
                 prepareData.bedTime = parseDateTime(bedTime);
+            } else {
+                const validate = new Date(existingSleepCycle.bedTime).valueOf() < new Date(wakeUpTime).valueOf();
+                if(!validate) {
+                    ctx.status = 400
+                    ctx.body = `Bed time must be less than wake up time`
+                    return
+                }
             }
 
             const updated = await strapi.entityService.update('api::sleep-cycle.sleep-cycle', id, {
                 data: prepareData
             });
 
+            const afterSleepCycle = await strapi.entityService.findMany('api::sleep-cycle.sleep-cycle', {
+                filters: { id: id, user: user.id },
+                populate: { sleepCycleLines: true },
+                limit: 1
+            });
+
+            const totalSleepTime = new Date(afterSleepCycle[0].wakeUpTime).valueOf() - new Date(afterSleepCycle[0].bedTime).valueOf();
+            const totalSnoringTime = afterSleepCycle[0].sleepCycleLines.reduce((acc, cur) => {
+                if(new Date(cur.startTime).valueOf() >= new Date(afterSleepCycle[0].bedTime).valueOf() && new Date(cur.endTime).valueOf() <= new Date(afterSleepCycle[0].wakeUpTime).valueOf()){
+                    return acc + (new Date(cur.endTime).valueOf() - new Date(cur.startTime).valueOf());
+                }
+            }, 0);
+
             ctx.status = 200
-            ctx.body = updated
+            ctx.body = {
+                ...afterSleepCycle[0],
+                totalSleepTime: totalSleepTime,
+                totalSnoringTime: totalSnoringTime,
+            }
         } catch (error) {
             ctx.status = 500
             ctx.body = error.message
         }
     }
-
 
 }
