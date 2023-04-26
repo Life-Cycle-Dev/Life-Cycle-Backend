@@ -1,7 +1,8 @@
 const { validateHeaderUser, 
         validateRequireFields } = require("../../../common/request-helper");
 const { getPreviousDate,
-        parseDateTime } = require("../../../common/function");
+        parseDateTime,
+        parseDate } = require("../../../common/function");
 
 module.exports = {
 
@@ -15,7 +16,7 @@ module.exports = {
             }
 
             const { bedTime, wakeUpTime } = ctx.request.body;
-            const date = getPreviousDate(new Date(bedTime).valueOf());
+            const date = getPreviousDate(bedTime);
 
             const existingSleepCycle = await strapi.entityService.findMany('api::sleep-cycle.sleep-cycle', {
                 filters: { date: date, user: user.id },
@@ -106,7 +107,7 @@ module.exports = {
                 }
             }
 
-            const updated = await strapi.entityService.update('api::sleep-cycle.sleep-cycle', id, {
+            await strapi.entityService.update('api::sleep-cycle.sleep-cycle', id, {
                 data: prepareData
             });
 
@@ -129,6 +130,57 @@ module.exports = {
                 totalSleepTime: totalSleepTime,
                 totalSnoringTime: totalSnoringTime,
             }
+        } catch (error) {
+            ctx.status = 500
+            ctx.body = error.message
+        }
+    },
+
+    getSummary: async (ctx) => {
+        try {
+            const user = await validateHeaderUser(ctx);
+
+            if(!user) {
+                return
+            }
+
+            const startDate = parseDate(ctx.request.query.startDate || new Date().valueOf());
+            const endDate = parseDate(ctx.request.query.endDate || new Date(startDate).valueOf() + 6 * 24 * 60 * 60 * 1000);
+
+            let sleepCycle = await strapi.entityService.findMany('api::sleep-cycle.sleep-cycle', {
+                filters: { 
+                    user: user.id,
+                    $and: [
+                        {$or: [
+                            {date: { $gt: startDate }},
+                            {date: startDate},
+                        ]},
+                        {$or: [
+                            {date: { $lt: endDate }},
+                            {date: endDate},
+                        ]}
+                    ],
+                },
+                sort: { date: 'asc' },
+                populate: { sleepCycleLines: true },
+            });
+
+            sleepCycle = sleepCycle.map((item) => {
+                const totalSleepTime = new Date(item.wakeUpTime).valueOf() - new Date(item.bedTime).valueOf();
+                const totalSnoringTime = item.sleepCycleLines.reduce((acc, cur) => {
+                    if(new Date(cur.startTime).valueOf() >= new Date(item.bedTime).valueOf() && new Date(cur.endTime).valueOf() <= new Date(item.wakeUpTime).valueOf()){
+                        return acc + (new Date(cur.endTime).valueOf() - new Date(cur.startTime).valueOf());
+                    }
+                }, 0);
+                return {
+                    ...item,
+                    totalSleepTime: totalSleepTime < 0 ? 0 : totalSleepTime,
+                    totalSnoringTime: totalSnoringTime,
+                }
+            })
+
+            ctx.status = 200
+            ctx.body = sleepCycle     
         } catch (error) {
             ctx.status = 500
             ctx.body = error.message

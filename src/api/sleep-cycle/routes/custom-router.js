@@ -15,6 +15,14 @@ module.exports = {
         config: {
           auth: false
         }
+      },
+      {
+        method: 'GET',
+        path: '/lca/getSummary',
+        handler: 'custom-controllers.getSummary',
+        config: {
+          auth: false
+        }
       }
     ]
 }
