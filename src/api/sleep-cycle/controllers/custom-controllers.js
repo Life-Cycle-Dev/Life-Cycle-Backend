@@ -47,7 +47,7 @@ module.exports = {
                     ctx.body = `Bed time must be less than wake up time`
                     return
                 }
-                prepareData.bedTime = parseDateTime(bedTime);
+                prepareData.wakeUpTime = parseDateTime(wakeUpTime);
             }
 
             const entry = await strapi.entityService.create('api::sleep-cycle.sleep-cycle', {

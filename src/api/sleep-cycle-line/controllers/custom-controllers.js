@@ -41,27 +41,6 @@ module.exports = {
                 return
             }
 
-            const existingSleepCycleLine = await strapi.entityService.findMany('api::sleep-cycle-line.sleep-cycle-line', {
-                filters: { 
-                        sleepCycle: sleepCycleId, 
-                        $or: [
-                            {startTime: { $gt: parseDateTime(startTime) }},
-                            {startTime: startTime}
-                        ],
-                        $or: [
-                            {endTime: { $lt: parseDateTime(endTime) }},
-                            {endTime: endTime}
-                        ]
-                    },
-                limit: 1
-            });
-
-            if(existingSleepCycleLine.length > 0) {
-                ctx.status = 400
-                ctx.body = `Sleep cycle line already exists with startTime=${existingSleepCycleLine[0].startTime} beetween endTime=${existingSleepCycleLine[0].endTime}`
-                return
-            }
-
             let prepareData = {
                 sleepCycle: sleepCycleId,
                 startTime: parseDateTime(startTime),
