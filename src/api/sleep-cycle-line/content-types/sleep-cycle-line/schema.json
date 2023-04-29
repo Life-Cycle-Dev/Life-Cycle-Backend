@@ -25,6 +25,10 @@
       "relation": "manyToOne",
       "target": "api::sleep-cycle.sleep-cycle",
       "inversedBy": "sleepCycleLines"
+    },
+    "value": {
+      "type": "integer",
+      "required": true
     }
   }
 }

@@ -128,17 +128,11 @@ module.exports = {
             });
 
             const totalSleepTime = new Date(afterSleepCycle[0].wakeUpTime).valueOf() - new Date(afterSleepCycle[0].bedTime).valueOf();
-            const totalSnoringTime = afterSleepCycle[0].sleepCycleLines.reduce((acc, cur) => {
-                if(new Date(cur.startTime).valueOf() >= new Date(afterSleepCycle[0].bedTime).valueOf() && new Date(cur.endTime).valueOf() <= new Date(afterSleepCycle[0].wakeUpTime).valueOf()){
-                    return acc + (new Date(cur.endTime).valueOf() - new Date(cur.startTime).valueOf());
-                }
-            }, 0);
 
             ctx.status = 200
             ctx.body = {
                 ...afterSleepCycle[0],
-                totalSleepTime: totalSleepTime < 0 ? 0 : totalSleepTime,
-                totalSnoringTime: totalSnoringTime,
+                totalSleepTime: totalSleepTime < 0 ? 0 : totalSleepTime
             }
         } catch (error) {
             ctx.status = 500
@@ -177,15 +171,9 @@ module.exports = {
 
             sleepCycle = sleepCycle.map((item) => {
                 const totalSleepTime = new Date(item.wakeUpTime).valueOf() - new Date(item.bedTime).valueOf();
-                const totalSnoringTime = item.sleepCycleLines.reduce((acc, cur) => {
-                    if(new Date(cur.startTime).valueOf() >= new Date(item.bedTime).valueOf() && new Date(cur.endTime).valueOf() <= new Date(item.wakeUpTime).valueOf()){
-                        return acc + (new Date(cur.endTime).valueOf() - new Date(cur.startTime).valueOf());
-                    }
-                }, 0);
                 return {
                     ...item,
-                    totalSleepTime: totalSleepTime < 0 ? 0 : totalSleepTime,
-                    totalSnoringTime: totalSnoringTime,
+                    totalSleepTime: totalSleepTime < 0 ? 0 : totalSleepTime
                 }
             })
 

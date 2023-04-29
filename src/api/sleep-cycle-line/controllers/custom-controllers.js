@@ -8,13 +8,13 @@ module.exports = {
     async insertTimeCycleLine(ctx) {
         try {
             const user = await validateHeaderUser(ctx);
-            const requireFields = ['sleepCycleId', 'startTime', 'endTime'];
+            const requireFields = ['sleepCycleId', 'startTime', 'endTime', 'value'];
 
             if(!user || !validateRequireFields(ctx, requireFields)) {
                 return
             }
 
-            const { sleepCycleId, startTime, endTime } = ctx.request.body;
+            const { sleepCycleId, startTime, endTime, value } = ctx.request.body;
 
             const existingSleepCycle = await strapi.entityService.findMany('api::sleep-cycle.sleep-cycle', {
                 filters: { id: sleepCycleId, user: user.id },
@@ -45,7 +45,8 @@ module.exports = {
                 sleepCycle: sleepCycleId,
                 startTime: parseDateTime(startTime),
                 endTime: parseDateTime(endTime),
-                publishedAt: new Date()
+                publishedAt: new Date(),
+                value: value
             }
 
             await strapi.entityService.create('api::sleep-cycle-line.sleep-cycle-line', {

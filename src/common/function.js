@@ -1,7 +1,7 @@
 function getPreviousDate(datetime) {
     const date = new Date(datetime);
-    if (date.getUTCHours() < 12) {
-      date.setUTCHours(date.getUTCDate() - 1);
+    if (date.getHours() < 12) {
+      date.setUTCDate(date.getDate() - 1);
     }
     return date.toISOString().split('T')[0];
 }
